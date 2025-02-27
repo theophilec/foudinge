@@ -2,7 +2,7 @@
 
 Mapping the [network](https://ouestware.gitlab.io/retina/1.0.0-beta.4/#/graph/?url=https%3A%2F%2Fgist.githubusercontent.com%2Ftheophilec%2F351f17ece36477bc48438d5ec6d14b5a%2Fraw%2Ffa85a89541c953e8f00d6774fe42f8c4bd30fa47%2Fgraph.gexf&r=x&sa=re&ca[]=t&ca[]=ra-s&st[]=u&st[]=re&ed=u) of French restaurants and chefs from the [lefooding.com](https://lefooding.com) guide.
 
-The data comes from lefooding.com, gpt40-mini is used with [outlines](https://github.com/dottxtai/outlines) for structured output extraction. The graph is built with [Gephi-lite] and shared via [Retina]().
+The data comes from lefooding.com, gpt40-mini is used with [outlines](https://github.com/dottxt-ai/outlines) for structured output extraction. The graph is built with [Gephi-lite](https://gephi.org/gephi-lite/) and shared via [Retina](https://ouestware.gitlab.io/retina/1.0.0-beta.4/).
 
 ## Usage
 

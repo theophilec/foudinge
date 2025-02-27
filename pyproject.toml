@@ -1,0 +1,27 @@
+[project]
+name = "foudinge"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.12.9"
+dependencies = [
+    "accelerate>=0.26.0",
+    "asyncio>=3.4.3",
+    "bs4>=0.0.2",
+    "datasets>=3.3.2",
+    "datasette>=0.65.1",
+    "flair>=0.15.1",
+    "graphviz>=0.20.3",
+    "grequests>=0.7.0",
+    "jupyterlab>=4.3.5",
+    "llama-cpp-python>=0.3.7",
+    "mlx-lm>=0.21.4",
+    "notebook>=7.3.2",
+    "ollama>=0.4.7",
+    "openai>=1.64.0",
+    "outlines>=0.2.1",
+    "pip>=25.0.1",
+    "sentencepiece>=0.2.0",
+    "spacy>=3.8.4",
+    "transformers[sentencepiece]>=4.49.0",
+]

@@ -4,6 +4,7 @@ import networkx as nx
 from typing import Tuple
 import xml.sax.saxutils as saxutils
 
+
 def get_entities(db_name) -> list[Tuple[str, str, str, str, str]]:
     with sqlite3.connect(db_name) as conn:
         cursor = conn.cursor()
@@ -14,12 +15,14 @@ def get_entities(db_name) -> list[Tuple[str, str, str, str, str]]:
         data = cursor.fetchall()
     return data
 
+
 def normalize_text(text):
     """Normalize text to ensure consistent handling of accented characters"""
     if isinstance(text, str):
         # First decode any unicode escape sequences
-        return text.encode('utf-8').decode('utf-8', errors='ignore').strip()
+        return text.encode("utf-8").decode("utf-8", errors="ignore").strip()
     return str(text).strip()
+
 
 db_name = "reviews.db"
 
@@ -55,7 +58,7 @@ for restaurant in all_restaurants:
     g.add_node(restaurant, type="restaurant")
     # Add URL for restaurants that are in the title column
     if restaurant in title_to_url:
-        g.nodes[restaurant]['url'] = f"https://lefooding.com/{title_to_url[restaurant]}"
+        g.nodes[restaurant]["url"] = f"https://lefooding.com/{title_to_url[restaurant]}"
 
 for person in all_people:
     g.add_node(person, type="person")
@@ -81,27 +84,35 @@ for url, title, review, entity, clean in entities:
 
 # Verify all nodes have a type attribute
 for node in g.nodes():
-    if 'type' not in g.nodes[node]:
+    if "type" not in g.nodes[node]:
         print(f"Warning: Node '{node}' has no type attribute")
-        g.nodes[node]['type'] = 'restaurant'  # Default to restaurant
+        g.nodes[node]["type"] = "restaurant"  # Default to restaurant
+
 
 # Custom GEXF writer to handle encoding issues
 def write_gexf_with_encoding(G, path):
     from networkx.readwrite.gexf import generate_gexf
     import xml.dom.minidom
 
-    gexf_string = '\n'.join(generate_gexf(G, encoding='utf-8', prettyprint=True))
+    gexf_string = "\n".join(generate_gexf(G, encoding="utf-8", prettyprint=True))
 
     # Parse the GEXF string to a DOM object
     dom = xml.dom.minidom.parseString(gexf_string)
 
     # Write the DOM object to the file with UTF-8 encoding
-    with open(path, 'w', encoding='utf-8') as f:
-        dom.writexml(f, encoding='utf-8', newl='\n', addindent='  ')
+    with open(path, "w", encoding="utf-8") as f:
+        dom.writexml(f, encoding="utf-8", newl="\n", addindent="  ")
+
 
 # Use NetworkX's built-in writer with explicit encoding
 try:
-    nx.write_gexf(g, "restaurant_personnel_network.gexf", encoding='utf-8', prettyprint=True, version='1.2draft')
+    nx.write_gexf(
+        g,
+        "restaurant_personnel_network.gexf",
+        encoding="utf-8",
+        prettyprint=True,
+        version="1.2draft",
+    )
 except Exception as e:
     print(f"Error using standard GEXF writer: {e}")
     # Fall back to custom writer if needed
